@@ -1,202 +1,171 @@
-# 🚀 Insider Test Automation
+# Insider Test Automation Project
 
-This project contains automated test scenarios for the [Insider](https://useinsider.com/) website using Selenium WebDriver.
+A Selenium WebDriver test automation project for testing QA positions on the Insider career page.
 
-## 📋 Table of Contents
+## Overview
 
-- [About the Project](#about-the-project)
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Test Scenarios](#test-scenarios)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
+This project automates the testing of QA job listings on Insider's career website. It follows the Page Object Model (POM) design pattern for maintainable and reusable test code.
 
-## 🎯 About the Project
+## Features
 
-This project is developed to test QA positions on Insider's career page. The test scenarios include:
+- **Selenium WebDriver 4.15.0** - Modern web automation framework
+- **JUnit 4** - Testing framework
+- **WebDriverManager** - Automatic ChromeDriver management
+- **Maven** - Build and dependency management
+- **Page Object Model** - Clean code architecture
+- **Cross-platform support** - Works on Windows, macOS, and Linux
 
-- Homepage verification
-- Career page navigation
-- QA positions listing
-- Lever page verification
+## Prerequisites
 
-## ✨ Features
+- Java 11 or higher
+- Maven 3.6 or higher
+- Chrome browser (latest version)
+- Git
 
-- 🔧 **Selenium WebDriver 4.15.0** - Modern web automation
-- 🧪 **JUnit 4** - Test framework
-- 🚗 **WebDriverManager** - Automatic driver management
-- 📦 **Maven** - Dependency management
-- 🎨 **Page Object Model** - Clean and maintainable code structure
-- 🌐 **Cross-platform** - Windows, macOS, Linux support
+## Installation
 
-## 📋 Requirements
-
-- **Java 11** or higher
-- **Maven 3.6** or higher
-- **Chrome Browser** (latest version)
-- **Git**
-
-## 🛠️ Installation
-
-1. **Clone the project:**
+1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/insider-test-automation.git
-   cd insider-test-automation
+   git clone https://github.com/erdncyz/insider-selenium.git
+   cd insider-selenium
    ```
 
-2. **Install dependencies:**
+2. Install dependencies:
    ```bash
    mvn clean install
    ```
 
-3. **Download Chrome Driver:**
-   - Download the appropriate version for your operating system from [ChromeDriver](https://chromedriver.chromium.org/)
-   - Place it in the `drivers/` folder
-
-## 🚀 Usage
+## Usage
 
 ### Run All Tests
 ```bash
 mvn test
 ```
 
-### Run Specific Test Class
+### Run Specific Test
 ```bash
-mvn test -Dtest=verify_QA_jobs
+mvn test -Dtest=VerifyQAJobs
 ```
 
 ### Run in Headless Mode
 ```bash
-mvn test -Pheadless
+mvn test -Dselenium.headless=true
 ```
 
-### Generate Test Reports
-```bash
-mvn surefire-report:report
-```
-
-### Using the Test Runner Script
-```bash
-# Run all tests
-./run-tests.sh
-
-# Run only QA Jobs test
-./run-tests.sh qa-jobs
-
-# Run in headless mode
-./run-tests.sh headless
-```
-
-## 📁 Project Structure
+## Project Structure
 
 ```
-insider_test-master/
-├── src/
-│   └── test/
-│       └── java/
-│           ├── objects/                 # Page Object Model classes
-│           │   ├── HomePage.java
-│           │   ├── MorePage.java
-│           │   ├── CareersPage.java
-│           │   ├── QAPage.java
-│           │   ├── OpenPositionPage.java
-│           │   └── VerifyLeverPage.java
-│           ├── test_scenarios/          # Test scenarios
-│           │   ├── BaseTest.java        # Base test class
-│           │   ├── TestRunner.java      # Test suite
-│           │   └── VerifyQAJobs.java    # QA test
-│           └── utils/                   # Utility classes
-│               └── TestUtils.java       # Helper functions
-├── drivers/                             # WebDriver files
-├── target/                              # Maven build outputs
-├── .idea/                               # IntelliJ IDEA settings
-├── .vscode/                             # VS Code settings
-├── pom.xml                             # Maven configuration
-├── README.md                           # Project documentation
-├── .gitignore                          # Git ignore rules
-├── run-tests.sh                        # Test runner script
-├── insider_test.iml                    # IntelliJ IDEA module file
-├── PROJE_DOKUMANTASYONU.md             # Detailed project documentation
-├── HTML_DOKUMANTASYON.html             # HTML format documentation
-└── generate-pdf.sh                     # PDF generation script
+insider-selenium/
+├── src/test/java/
+│   ├── base/
+│   │   └── BaseTest.java              # Base test class with common setup
+│   ├── objects/                       # Page Object classes
+│   │   ├── HomePage.java             # Homepage interactions
+│   │   ├── MorePage.java             # Navigation menu
+│   │   ├── CareersPage.java          # Careers page
+│   │   ├── QAPage.java               # QA department page
+│   │   ├── OpenPositionPage.java     # Job listings page
+│   │   └── VerifyLeverPage.java      # Lever application page
+│   ├── runner/
+│   │   └── TestRunner.java           # Test suite runner
+│   └── test_scenarios/
+│       └── VerifyQAJobs.java         # Main test scenario
+├── src/test/resources/
+│   └── test-config.properties        # Test configuration
+├── drivers/                          # ChromeDriver files
+├── pom.xml                          # Maven configuration
+└── README.md                        # This file
 ```
 
-## 🧪 Test Scenarios
+## Test Scenario
 
-### `VerifyQAJobs` Test Scenario
-
-This test scenario performs the following steps:
+The `VerifyQAJobs` test performs the following steps:
 
 1. **Homepage Verification**
-   - Checks the visibility of Insider logo
-   - Accepts cookie permissions
+   - Verify Insider logo is displayed
+   - Accept cookie permissions
 
-2. **Navigation**
-   - Clicks on "More" menu
-   - Navigates to "Careers" page
+2. **Navigation to Careers**
+   - Click Company menu
+   - Navigate to Careers page
 
-3. **Career Page**
-   - Verifies the career page loads correctly
-   - Selects QA department
+3. **Careers Page Verification**
+   - Verify page elements are loaded
+   - Check locations and life sections
 
-4. **QA Positions**
-   - Lists QA positions
-   - Displays open positions
+4. **QA Department Selection**
+   - Click "See all teams"
+   - Select Quality Assurance department
 
-5. **Lever Page Verification**
-   - Checks if Lever page loads correctly
+5. **QA Jobs Selection**
+   - Navigate to QA jobs page
 
-## 🔧 Configuration
+6. **Position Filtering**
+   - Click "See all QA jobs"
+
+7. **Lever Page Verification**
+   - Verify Lever application page loads
+
+## Configuration
 
 ### Test Settings
 
-Test settings can be configured in `VerifyQAJobs.java`:
+Key configuration in `BaseTest.java`:
+- Implicit wait: 10 seconds
+- Page load timeout: 60 seconds
+- Base URL: https://useinsider.com/
 
-- **Implicit Wait**: 15 seconds
-- **Browser**: Chrome
-- **Window**: Maximized
-- **Base URL**: https://useinsider.com/
+### Chrome Options
 
-### Chrome Driver Path
+The project uses optimized Chrome options for better performance:
+- Maximized window
+- Disabled notifications and popups
+- Performance optimizations
+- Remote debugging enabled
 
-Chrome driver path is defined in `pom.xml`:
+## Test Reports
 
-```xml
-<webdriver.chrome.driver>${project.basedir}/drivers/chromedriver.exe</webdriver.chrome.driver>
+Test results are generated in `target/surefire-reports/` directory after test execution.
+
+## Troubleshooting
+
+### Common Issues
+
+1. **ChromeDriver Version Mismatch**
+   - WebDriverManager automatically handles driver versions
+   - Ensure Chrome browser is up to date
+
+2. **Element Not Found**
+   - Check if website structure has changed
+   - Verify locators in page object classes
+
+3. **Timeout Issues**
+   - Increase wait times in BaseTest.java if needed
+   - Check internet connection
+
+### Debug Mode
+
+Run tests with debug output:
+```bash
+mvn test -X
 ```
 
-## 📊 Test Reports
+## Contributing
 
-Test results can be found in `target/surefire-reports/` directory.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
-## 🤝 Contributing
+## License
 
-1. Fork this repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Create a Pull Request
+This project is open source and available under the MIT License.
 
-## 📝 License
+## Contact
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
-## 📞 Contact
-
-- **Project Owner**: [Your Name]
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your LinkedIn Profile]
-
-## 🙏 Acknowledgments
-
-- [Selenium](https://selenium.dev/) - Web automation framework
-- [Insider](https://useinsider.com/) - Tested website
-- [Maven](https://maven.apache.org/) - Build tool
+For questions or issues, please open an issue on GitHub.
 
 ---
 
-⭐ If you like this project, don't forget to give it a star! 
+Built with ❤️ using Selenium WebDriver and Java 

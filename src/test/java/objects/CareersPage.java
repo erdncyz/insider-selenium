@@ -24,42 +24,37 @@ public class CareersPage {
     }
 
     public void selectQualityAssurance(){
-        // Scroll to "See all teams" button to make it visible
+        // Find and click "See all teams" button
         WebElement seeAllTeamsButton = driver.findElement(all_them_button);
         ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", seeAllTeamsButton);
         
-        // Wait a bit for scroll to complete
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
         
-        // Try JavaScript click to avoid navbar interference
+        // Click with fallback to JavaScript
         try {
             seeAllTeamsButton.click();
         } catch (Exception e) {
-            System.out.println("Normal click failed, trying JavaScript click...");
             ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", seeAllTeamsButton);
         }
         
-        // Wait for page transition
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
         
+        // Find and click Quality Assurance link
         WebElement qualityAssuranceLink = driver.findElement(select_QA);
-        // Try JavaScript click to avoid interference
         try {
             qualityAssuranceLink.click();
         } catch (Exception e) {
-            System.out.println("Normal click failed for QA, trying JavaScript click...");
             ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", qualityAssuranceLink);
         }
         
-        // Wait for QA page to load
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

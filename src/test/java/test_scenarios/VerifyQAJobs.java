@@ -15,10 +15,12 @@ import org.junit.Test;
  */
 public class VerifyQAJobs extends BaseTest {
 
-    @Test
+        @Test
     public void verifyQAJobs() throws InterruptedException {
         try {
-            // Create Page Objects
+            System.out.println("=== QA JOBS VERIFICATION TEST STARTED ===");
+            
+            // Initialize Page Objects
             HomePage homePage = new HomePage(driver);
             MorePage morePage = new MorePage(driver);
             CareersPage careersPage = new CareersPage(driver);
@@ -26,45 +28,38 @@ public class VerifyQAJobs extends BaseTest {
             OpenPositionPage positionPage = new OpenPositionPage(driver);
             VerifyLeverPage leverPage = new VerifyLeverPage(driver);
 
-            // Execute test steps
-            System.out.println("Starting QA Jobs verification test...");
-            
-            // 1. Homepage verification
-            System.out.println("Verifying homepage...");
+            // Test Steps
+            System.out.println("Step 1: Verifying homepage");
             homePage.verifyInsiderLogo();
             homePage.acceptAllPermissions();
 
-            System.out.println("Clicking Company Header Menu...");
+            System.out.println("Step 2: Navigating to Company menu");
             homePage.clickCompanyMenu();
             
-            // 2. Navigation
-            System.out.println("Clicked to Careers page...");
+            System.out.println("Step 3: Navigating to Careers page");
             morePage.clickCareers();
             
-            // 3. Career page verification
-            System.out.println("Verifying careers page...");
+            System.out.println("Step 4: Verifying careers page");
             careersPage.verifyCareersPage();
             
-            // 4. QA department selection
-            System.out.println("Selecting QA department...");
+            System.out.println("Step 5: Selecting QA department");
             careersPage.selectQualityAssurance();
-
-            // 5. See All QA Jobs
-            System.out.println("Selecting QA jobs...");
+ 
+            System.out.println("Step 6: Selecting QA jobs");
             qaPage.selectQAJobs();
             
-            // 6. QA positions
-            System.out.println("Listing QA positions...");
+            System.out.println("Step 7: Filtering positions");
             positionPage.openPositionPage();
             
-            // 7. Lever page verification
-            System.out.println("Verifying Lever page...");
+            System.out.println("Step 8: Verifying Lever page");
             leverPage.verifyPage();
             
-            // Test successful
+            System.out.println("=== TEST COMPLETED SUCCESSFULLY ===");
             assertTestPassed("QA Jobs Verification");
             
         } catch (Exception e) {
+            System.out.println("=== TEST FAILED ===");
+            System.out.println("Error: " + e.getMessage());
             logTestError("QA Jobs Verification", e.getMessage());
             throw e;
         }

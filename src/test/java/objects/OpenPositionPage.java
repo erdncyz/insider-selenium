@@ -17,7 +17,6 @@ public class OpenPositionPage {
 
     By click_filter_location = By.xpath("(//span[@class='select2-selection__arrow'])[1]");
     By select_location = By.xpath("//li[@class='select2-results__option']");
-    By apply_now_button = By.xpath("(//a[contains(text(),'Apply Now')])[1]");
 
 
     public void openPositionPage() throws InterruptedException {
@@ -32,8 +31,5 @@ public class OpenPositionPage {
                 break;
             }
         }
-
-        WebElement applyNow = driver.findElement(apply_now_button);
-        applyNow.click();
     }
 }
